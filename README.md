@@ -27,7 +27,10 @@ hpv-shanghai-girls/
     ├── gen_material_one_pager.py    # 生成家长会动员一页纸 md
     ├── gen_remind_text.py           # 漏种名单→分版本提醒话术
     ├── export_faq.py                # 谣言库→FAQ 问答知识包 json/md
-    └── gen_material.py              # 宣传物料文案 折页/海报/推文
+    ├── gen_material.py              # 宣传物料文案 折页/海报/推文
+    ├── log_concern.py               # 疑虑登记/统计（效果统计→沉淀谣言库）
+    └── diff_policy.py               # 政策 config 速览/快照/变更比对
+logs/                              # log_concern 生成的疑虑日志（运行后出现）
 docs/
     └── HPV推广批量模式_5需求演示.docx   # 5需求触发与结果演示
 examples/
@@ -54,6 +57,15 @@ python scripts/export_faq.py --md faq.md
 # 宣传物料文案
 python scripts/gen_material.py flier
 python scripts/gen_material.py all -o material.md
+
+# 疑虑登记（效果统计：门诊遇到新疑虑时记录，供沉淀谣言库）
+python scripts/log_concern.py add --q "孩子爸爸说打疫苗没用" --ctx 家长会 --by 校医
+python scripts/log_concern.py list --pending
+python scripts/log_concern.py mark --no 1
+
+# 政策变更追踪（改 config 后）
+python scripts/diff_policy.py snapshot    # 改前先存快照
+python scripts/diff_policy.py diff        # 比对并生成生效提醒
 ```
 依赖：`pip install pandas openpyxl`
 完整演示见 `docs/HPV推广批量模式_5需求演示.docx`；样例数据见 `examples/`。

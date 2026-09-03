@@ -69,6 +69,8 @@ python <技能目录>/scripts/check_eligibility.py <出生日期YYYY-MM-DD>
 | 群发用 csv | 加 `--csv 群发.csv` | 姓名,手机,文案 三列 csv |
 | FAQ 问答知识包 | `python scripts/export_faq.py --json faq.json`（或 `--md faq.md`） | 从 03-谣言库导出结构化 QA（公众号/机器人用） |
 | 宣传物料文案 | `python scripts/gen_material.py flier\|poster\|article\|all` | 折页/海报/推文骨架（口径来自 config） |
+| 疑虑登记(效果统计) | `python scripts/log_concern.py add --q "新疑虑" --ctx 场景 --by 谁` | 门诊/家长会遇新疑虑→记日志待沉淀谣言库 |
+| 政策变更追踪 | `python scripts/diff_policy.py snapshot` 后 `diff` | config 改版时输出变更说明+生效提醒 |
 
 脚本内部已从 `config/policy.yaml` 读取免费口径/预约渠道/热线，**保证与当前政策一致**；改 config 即全局更新，勿在脚本/回答里写死政策。
 
@@ -110,6 +112,8 @@ python <技能目录>/scripts/check_eligibility.py <出生日期YYYY-MM-DD>
 - `scripts/gen_remind_text.py` — 漏种名单→分版本提醒话术 txt/csv（推广/批量）
 - `scripts/export_faq.py` — 谣言库→FAQ 问答知识包 json/md（推广/批量）
 - `scripts/gen_material.py` — 宣传物料文案 折页/海报/推文（推广/批量）
+- `scripts/log_concern.py` — 疑虑登记/统计/沉淀标记（效果统计）
+- `scripts/diff_policy.py` — 政策 config 速览/快照/变更比对（口径维护）
 
 ---
 
