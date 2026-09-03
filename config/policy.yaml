@@ -48,3 +48,13 @@ offers:
 points:
   note: "浦东各社区卫生服务中心接种门诊名单 → 官方推文《家长请查收》/ 健康云查询"
   source: "疾控U健康公众号 / 健康云"
+
+# ★ 学校级个性化字段（供 gen_material_one_pager / gen_remind_text 批量生成使用）
+school:
+  name: ""                       # 学校名称（如：XX中学），留空则标题用"本校"
+  grades: []                     # 覆盖年级，如 ["六年级", "初一"]
+  contact_person: ""             # 学校对接负责人
+  contact_phone: ""              # 联系电话
+  consent_deadline: ""           # 知情同意书回收截止（如 2026-09-15），留空则不显示
+  booking_note: ""               # 本校预约补充说明（如"统一由校医协助登记"），留空则用通用渠道
+  clinic: ""                     # 对口接种门诊名称

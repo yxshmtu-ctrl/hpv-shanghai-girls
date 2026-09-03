@@ -56,7 +56,25 @@ python <技能目录>/scripts/check_eligibility.py <出生日期YYYY-MM-DD>
 
 ---
 
-## 三、内容路由表
+## 三、推广 / 批量工作模式（校医·接种门诊·公卫专用）
+
+当用户身份为**校医/接种护士/公卫人员**，且请求是"批量名单、漏种提醒、家长会一页纸、宣传物料"等**生产性任务**时，不要只口头回答——**运行对应脚本**并把结果交给用户：
+
+| 请求类型 | 运行脚本 | 产出 |
+|---------|---------|------|
+| 从花名册筛免费适龄名单 | `python scripts/gen_class_list.py 花名册.xlsx --out 名单.xlsx` | Excel 名单（免费者高亮） |
+| 按班级筛 | 加 `--class "六年级(1)班"` | 单班名单 |
+| 家长会一页纸 | `python scripts/gen_material_one_pager.py --school 校名 --class 年级 -o 一页纸.md` | 个性化 md（口径来自 config） |
+| 漏种提醒话术 | `python scripts/gen_remind_text.py 漏种名单.csv` | 逐条文案（终端） |
+| 群发用 csv | 加 `--csv 群发.csv` | 姓名,手机,文案 三列 csv |
+
+脚本内部已从 `config/policy.yaml` 读取免费口径/预约渠道/热线，**保证与当前政策一致**；改 config 即全局更新，勿在脚本/回答里写死政策。
+
+⚠️ 花名册/漏种名单含未成年人个人信息：仅限授权环境使用，禁止上传公开仓库或外发。
+
+---
+
+## 四、内容路由表
 
 | 用户问题类型 | 引用文件 | 要点 |
 |-------------|---------|------|
@@ -77,18 +95,21 @@ python <技能目录>/scripts/check_eligibility.py <出生日期YYYY-MM-DD>
 
 ---
 
-## 四、参考文件清单
-- `references/01-医学知识库.md` — 纯医学（HPV/疫苗/程序/安全性）
+## 五、参考文件清单
+- `references/01-医学知识库.md` — 纯医学（HPV/疫苗/程序/安全性，含特殊人群章）
 - `references/02-政策速查与本地资源.md` — 上海政策/预约/资源
-- `references/03-谣言与反误区库.md` — 常见疑虑应答
+- `references/03-谣言与反误区库.md` — 常见疑虑应答（12条）
 - `references/04-沟通话术库.md` — 四类场景分层话术
 - `references/05-政策原文参考.md` — ★权威政策原文要点（国家16号通知 + 上海1号方案）
-- `config/policy.yaml` — ★可更新政策配置（时效内容只改这里）
+- `config/policy.yaml` — ★可更新政策配置（含 school 个性化块）
 - `scripts/check_eligibility.py` — 出生日期→免费资格判断
+- `scripts/gen_class_list.py` — 花名册→免费适龄名单 Excel（推广/批量）
+- `scripts/gen_material_one_pager.py` — 生成家长会动员一页纸 md（推广/批量）
+- `scripts/gen_remind_text.py` — 漏种名单→分版本提醒话术 txt/csv（推广/批量）
 
 ---
 
-## 五、边界与更新纪律
+## 六、边界与更新纪律
 1. **可更新纪律**：凡政策/价格/门诊/优惠一律答"以官方最新公告为准"并指向 config；SKILL 主体只保留不变医学知识
 2. 优惠活动（九价减免等）**时效极强**：无 config 确认前不承诺减免细节，指引查询官方
 3. 个体医疗问题（禁忌/过敏/已感染/正在治疗）→ 引导至接种门诊由医生判断
