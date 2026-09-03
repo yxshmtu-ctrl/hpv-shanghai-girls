@@ -25,7 +25,14 @@ hpv-shanghai-girls/
     ├── check_eligibility.py         # 出生日期→免费资格判断
     ├── gen_class_list.py            # 花名册→免费适龄名单 Excel
     ├── gen_material_one_pager.py    # 生成家长会动员一页纸 md
-    └── gen_remind_text.py           # 漏种名单→分版本提醒话术
+    ├── gen_remind_text.py           # 漏种名单→分版本提醒话术
+    ├── export_faq.py                # 谣言库→FAQ 问答知识包 json/md
+    └── gen_material.py              # 宣传物料文案 折页/海报/推文
+docs/
+    └── HPV推广批量模式_5需求演示.docx   # 5需求触发与结果演示
+examples/
+    ├── 花名册样例.xlsx               # 测试用花名册（假数据）
+    └── 漏种名单样例.csv              # 测试用漏种名单（假数据）
 ```
 
 ## 脚本用法（推广/批量）
@@ -39,8 +46,17 @@ python scripts/gen_material_one_pager.py --school XX中学 --class 六年级 -o 
 
 # 漏种提醒（分版本：未首剂/缺第2剂）
 python scripts/gen_remind_text.py 漏种名单.csv --csv 群发.csv
+
+# FAQ 问答知识包（公众号/机器人）
+python scripts/export_faq.py --json faq.json
+python scripts/export_faq.py --md faq.md
+
+# 宣传物料文案
+python scripts/gen_material.py flier
+python scripts/gen_material.py all -o material.md
 ```
 依赖：`pip install pandas openpyxl`
+完整演示见 `docs/HPV推广批量模式_5需求演示.docx`；样例数据见 `examples/`。
 
 ## 知识来源
 疾控U健康（浦东疾控官方）HPV疫苗科普三篇：

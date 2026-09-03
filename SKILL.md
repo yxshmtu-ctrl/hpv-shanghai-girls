@@ -67,6 +67,8 @@ python <技能目录>/scripts/check_eligibility.py <出生日期YYYY-MM-DD>
 | 家长会一页纸 | `python scripts/gen_material_one_pager.py --school 校名 --class 年级 -o 一页纸.md` | 个性化 md（口径来自 config） |
 | 漏种提醒话术 | `python scripts/gen_remind_text.py 漏种名单.csv` | 逐条文案（终端） |
 | 群发用 csv | 加 `--csv 群发.csv` | 姓名,手机,文案 三列 csv |
+| FAQ 问答知识包 | `python scripts/export_faq.py --json faq.json`（或 `--md faq.md`） | 从 03-谣言库导出结构化 QA（公众号/机器人用） |
+| 宣传物料文案 | `python scripts/gen_material.py flier\|poster\|article\|all` | 折页/海报/推文骨架（口径来自 config） |
 
 脚本内部已从 `config/policy.yaml` 读取免费口径/预约渠道/热线，**保证与当前政策一致**；改 config 即全局更新，勿在脚本/回答里写死政策。
 
@@ -106,6 +108,8 @@ python <技能目录>/scripts/check_eligibility.py <出生日期YYYY-MM-DD>
 - `scripts/gen_class_list.py` — 花名册→免费适龄名单 Excel（推广/批量）
 - `scripts/gen_material_one_pager.py` — 生成家长会动员一页纸 md（推广/批量）
 - `scripts/gen_remind_text.py` — 漏种名单→分版本提醒话术 txt/csv（推广/批量）
+- `scripts/export_faq.py` — 谣言库→FAQ 问答知识包 json/md（推广/批量）
+- `scripts/gen_material.py` — 宣传物料文案 折页/海报/推文（推广/批量）
 
 ---
 
